@@ -223,7 +223,9 @@ Low
 
 
 ```
-
+![wazuh_manager](https://github.com/MohammadKassb369/Wazuh_claude_analyst/blob/main/ebd0e553-5a75-43ae-9db6-ce12ea9964b0.jpg)
+![wazuh_dash1](https://github.com/MohammadKassb369/Wazuh_claude_analyst/blob/main/779f57a4-87eb-4d44-a809-35c494b3a1fe.jpg)
+![wazuh_dash2](https://github.com/MohammadKassb369/Wazuh_claude_analyst/blob/main/3684cd79-1e3b-4eb9-9259-84be3ae15b88.jpg)
 ```
 
 ---
