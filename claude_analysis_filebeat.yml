@@ -1,0 +1,36 @@
+# /etc/filebeat/inputs.d/claude_analysis.yml
+# ─────────────────────────────────────────────────────────────────────────────
+# Filebeat input — ships Claude AI analysis reports to the Wazuh OpenSearch
+# index so they appear in the Wazuh Dashboard under wazuh-claude-*
+#
+# INSTALL:
+#   sudo cp claude_analysis.yml /etc/filebeat/inputs.d/
+#   sudo systemctl restart filebeat
+# ─────────────────────────────────────────────────────────────────────────────
+
+- type: log
+  enabled: true
+
+  paths:
+    - /var/ossec/logs/claude_reports/claude_analysis.json
+
+  # Each line is a complete JSON event — tell Filebeat not to merge lines
+  json.keys_under_root: true
+  json.overwrite_keys:  true
+  json.add_error_key:   true
+
+  # Tag every event so Logstash/OpenSearch can route it correctly
+  tags:
+    - claude-analysis
+    - wazuh-ai
+
+  fields_under_root: true
+  fields:
+    # This field tells the Wazuh Logstash pipeline which index to use
+    input_type: claude_analysis
+
+  # Multiline disabled — every line is self-contained JSON
+  multiline.type: pattern
+  multiline.negate: true
+  multiline.match: after
+  multiline.pattern: '^\{'
