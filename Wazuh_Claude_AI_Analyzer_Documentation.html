@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Wazuh Claude AI Alert Analyzer ��� Full Documentation</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap');
+    :root {
+      --bg:#0d1117;--surface:#161b22;--border:#21262d;
+      --accent:#00d4ff;--warn:#ffb347;--text:#e6edf3;--dim:#8b949e;
+      --mono:'IBM Plex Mono',monospace;--sans:'IBM Plex Sans',sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.75;padding:0;}
+    body>*{max-width:960px;margin:0 auto;padding:0 32px;}
+    h1{font-size:1.75rem;font-weight:700;color:var(--text);border-bottom:2px solid var(--accent);padding-bottom:12px;margin:48px 0 24px;}
+    h2{font-size:1.15rem;font-weight:600;color:var(--accent);margin:40px 0 16px;font-family:var(--mono);letter-spacing:.05em;}
+    h3{font-size:1rem;font-weight:600;color:var(--warn);margin:28px 0 12px;}
+    h4{font-size:.85rem;font-weight:600;color:var(--dim);margin:20px 0 8px;text-transform:uppercase;letter-spacing:.08em;}
+    p{margin-bottom:16px;color:#cdd9e5;}
+    strong{color:var(--text);font-weight:600;}
+    code{font-family:var(--mono);font-size:.84rem;background:#1c2333;color:#79c0ff;padding:2px 7px;border-radius:3px;}
+    pre{background:#0d1117;border:1px solid var(--border);border-left:3px solid var(--accent);padding:20px 24px;border-radius:4px;overflow-x:auto;margin:20px 0;}
+    pre code{background:none;padding:0;color:#a5d6ff;font-size:.82rem;line-height:1.65;}
+    table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.88rem;}
+    thead tr{background:#1c2333;}
+    th{text-align:left;padding:10px 14px;color:var(--accent);font-family:var(--mono);font-size:.76rem;letter-spacing:.08em;font-weight:600;border-bottom:1px solid var(--border);}
+    td{padding:9px 14px;border-bottom:1px solid var(--border);color:#cdd9e5;}
+    tr:hover td{background:#161b22;}
+    ul,ol{padding-left:24px;margin-bottom:16px;}
+    li{margin-bottom:6px;color:#cdd9e5;}
+    hr{border:none;border-top:1px solid var(--border);margin:40px 0;}
+    nav#TOC{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:24px 28px;margin:32px 0 48px;border-radius:4px;}
+    nav#TOC ul{list-style:none;padding:0;}
+    nav#TOC ul ul{padding-left:20px;}
+    nav#TOC li{padding:3px 0;}
+    nav#TOC a{color:var(--dim);text-decoration:none;font-size:.9rem;}
+    nav#TOC a:hover{color:var(--accent);}
+    ::-webkit-scrollbar{width:6px;height:6px;}
+    ::-webkit-scrollbar-track{background:var(--bg);}
+    ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+    .title-block{background:var(--surface);border-bottom:2px solid var(--accent);padding:40px 32px 32px;margin-bottom:0;}
+    .title-block h1{border:none;margin:0 0 12px;color:var(--accent);font-size:2rem;}
+    .title-block .meta{font-family:var(--mono);font-size:.8rem;color:var(--dim);}
+    .title-block .meta span{margin-right:28px;}
+    .title-block .meta span::before{content:'▸ ';color:var(--accent);}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Wazuh Claude AI Alert Analyzer ��� Full
+Documentation</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#wazuh-claude-ai-alert-analyzer-full-documentation"
+id="toc-wazuh-claude-ai-alert-analyzer-full-documentation">Wazuh Claude
+AI Alert Analyzer — Full Documentation</a>
+<ul>
+<li><a href="#table-of-contents" id="toc-table-of-contents">Table of
+Contents</a></li>
+<li><a href="#overview" id="toc-overview">1. Overview</a></li>
+<li><a href="#architecture" id="toc-architecture">2.
+Architecture</a></li>
+<li><a href="#prerequisites" id="toc-prerequisites">3.
+Prerequisites</a></li>
+<li><a href="#installation" id="toc-installation">4.
+Installation</a></li>
+<li><a href="#configuration-reference"
+id="toc-configuration-reference">5. Configuration Reference</a></li>
+<li><a href="#how-alert-filtering-works"
+id="toc-how-alert-filtering-works">6. How Alert Filtering Works</a></li>
+<li><a href="#deduplication-logic" id="toc-deduplication-logic">7.
+Deduplication Logic</a></li>
+<li><a href="#running-the-analyzer" id="toc-running-the-analyzer">8.
+Running the Analyzer</a></li>
+<li><a href="#filebeat-integration" id="toc-filebeat-integration">9.
+Filebeat Integration</a></li>
+<li><a href="#wazuh-dashboard-setup" id="toc-wazuh-dashboard-setup">10.
+Wazuh Dashboard Setup</a></li>
+<li><a href="#report-format" id="toc-report-format">11. Report
+Format</a></li>
+<li><a href="#troubleshooting" id="toc-troubleshooting">12.
+Troubleshooting</a></li>
+<li><a href="#file-reference" id="toc-file-reference">13. File
+Reference</a></li>
+<li><a href="#changelog" id="toc-changelog">14. Changelog</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="wazuh-claude-ai-alert-analyzer-full-documentation">Wazuh Claude
+AI Alert Analyzer — Full Documentation</h1>
+<p><strong>Version:</strong> 3.0<br />
+<strong>Platform:</strong> Wazuh 4.x · Amazon Linux 2023<br />
+<strong>Author:</strong> SOC Engineering<br />
+<strong>Date:</strong> March 2026</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol type="1">
+<li><a href="#overview">Overview</a></li>
+<li><a href="#architecture">Architecture</a></li>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#configuration-reference">Configuration Reference</a></li>
+<li><a href="#how-alert-filtering-works">How Alert Filtering
+Works</a></li>
+<li><a href="#deduplication-logic">Deduplication Logic</a></li>
+<li><a href="#running-the-analyzer">Running the Analyzer</a></li>
+<li><a href="#filebeat-integration">Filebeat Integration</a></li>
+<li><a href="#wazuh-dashboard-setup">Wazuh Dashboard Setup</a></li>
+<li><a href="#report-format">Report Format</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+<li><a href="#file-reference">File Reference</a></li>
+<li><a href="#changelog">Changelog</a></li>
+</ol>
+<hr />
+<h2 id="overview">1. Overview</h2>
+<p>The <strong>Wazuh Claude AI Alert Analyzer</strong> is a Python-based
+security automation tool that monitors Wazuh alerts in real time, sends
+high-severity and custom-rule alerts to the Anthropic Claude AI API for
+intelligent analysis, and writes structured investigation reports
+directly into the Wazuh OpenSearch index — making them visible and
+searchable in the Wazuh Dashboard.</p>
+<h3 id="what-it-does">What it does</h3>
+<ul>
+<li>Reads alerts from
+<code>/var/ossec/logs/alerts/alerts.json</code></li>
+<li>Filters alerts by severity level threshold (default: level &gt;
+8)</li>
+<li>Always captures 6-digit custom rules (100000–999999) regardless of
+level</li>
+<li>Deduplicates alerts to prevent redundant AI calls</li>
+<li>Sends each unique alert to Claude AI for security analysis</li>
+<li>Saves a human-readable <code>.txt</code> report per alert</li>
+<li>Writes a machine-readable JSON event to
+<code>claude_analysis.json</code></li>
+<li>Filebeat ships that JSON file to the Wazuh Indexer (OpenSearch)</li>
+<li>Reports appear in the Wazuh Dashboard under the
+<code>wazuh-claude-*</code> index</li>
+</ul>
+<hr />
+<h2 id="architecture">2. Architecture</h2>
+<pre><code>Wazuh Manager
+└── /var/ossec/logs/alerts/alerts.json
+        │
+        ▼
+wazuh_claude_analyzer-V3.py
+        │
+        ├──► /var/ossec/logs/claude_reports/alert_L*.txt     (human-readable)
+        │
+        └──► /var/ossec/logs/claude_reports/claude_analysis.json
+                        │
+                        ▼
+                   Filebeat 7.10.2
+                        │
+                        ▼
+              Wazuh Indexer (OpenSearch)
+              index: wazuh-claude-YYYY.MM.dd
+                        │
+                        ▼
+              Wazuh Dashboard → Discover</code></pre>
+<p><strong>Pipeline summary:</strong><br />
+Python script → JSON feed file → Filebeat → Wazuh Indexer →
+Dashboard</p>
+<p>No Logstash is required. Filebeat connects directly to the Wazuh
+Indexer on port 9200.</p>
+<hr />
+<h2 id="prerequisites">3. Prerequisites</h2>
+<h3 id="system-requirements">System requirements</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Component</th>
+<th>Version</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Python</td>
+<td>3.10+</td>
+<td>Uses <code>list[dict]</code> type hints</td>
+</tr>
+<tr class="even">
+<td>Wazuh Manager</td>
+<td>4.x</td>
+<td>Source of alerts.json</td>
+</tr>
+<tr class="odd">
+<td>Wazuh Indexer</td>
+<td>4.x</td>
+<td>OpenSearch-based, port 9200</td>
+</tr>
+<tr class="even">
+<td>Filebeat</td>
+<td>7.10.2</td>
+<td>Pre-installed with Wazuh</td>
+</tr>
+<tr class="odd">
+<td>Anthropic API key</td>
+<td>—</td>
+<td><code>sk-ant-...</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="python-package">Python package</h3>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install anthropic</span></code></pre></div>
+<h3 id="api-key">API key</h3>
+<p>Obtain your key from https://console.anthropic.com and export it:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_API_KEY</span><span class="op">=</span><span class="st">&#39;sk-ant-...&#39;</span></span></code></pre></div>
+<p>For permanent storage:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&#39;ANTHROPIC_API_KEY=sk-ant-...&#39;</span> <span class="kw">|</span> <span class="fu">sudo</span> tee <span class="at">-a</span> /etc/environment</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> /etc/environment</span></code></pre></div>
+<hr />
+<h2 id="installation">4. Installation</h2>
+<h3 id="step-1-copy-the-script">Step 1 — Copy the script</h3>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> cp wazuh_claude_analyzer-V3.py /usr/local/bin/</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chmod +x /usr/local/bin/wazuh_claude_analyzer-V3.py</span></code></pre></div>
+<h3 id="step-2-create-output-directories">Step 2 — Create output
+directories</h3>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir <span class="at">-p</span> /var/ossec/logs/claude_reports</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chmod 755 /var/ossec/logs/claude_reports</span></code></pre></div>
+<h3 id="step-3-install-python-dependency">Step 3 — Install Python
+dependency</h3>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install anthropic</span></code></pre></div>
+<h3 id="step-4-test-run">Step 4 — Test run</h3>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_API_KEY</span><span class="op">=</span><span class="st">&#39;sk-ant-...&#39;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> <span class="at">-E</span> python3 /usr/local/bin/wazuh_claude_analyzer-V3.py <span class="at">--mode</span> once</span></code></pre></div>
+<h3 id="step-5-optional-run-as-a-systemd-service-watch-mode">Step 5 —
+Optional: run as a systemd service (watch mode)</h3>
+<p>Create <code>/etc/systemd/system/wazuh-claude.service</code>:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode ini"><code class="sourceCode ini"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[Unit]</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="dt">Description</span><span class="ot">=</span><span class="st">Wazuh Claude AI Alert Analyzer</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="dt">After</span><span class="ot">=</span><span class="st">wazuh-manager.service</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">[Service]</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="dt">Type</span><span class="ot">=</span><span class="st">simple</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="dt">EnvironmentFile</span><span class="ot">=</span><span class="st">/etc/environment</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="dt">ExecStart</span><span class="ot">=</span><span class="st">/usr/bin/python3 /usr/local/bin/wazuh_claude_analyzer-V3.py --mode watch</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="dt">Restart</span><span class="ot">=</span><span class="st">on-failure</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="dt">RestartSec</span><span class="ot">=</span><span class="dv">10</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="dt">User</span><span class="ot">=</span><span class="st">root</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="kw">[Install]</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="dt">WantedBy</span><span class="ot">=</span><span class="st">multi-user.target</span></span></code></pre></div>
+<p>Enable and start:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl daemon-reload</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl enable wazuh-claude</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl start wazuh-claude</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl status wazuh-claude</span></code></pre></div>
+<hr />
+<h2 id="configuration-reference">5. Configuration Reference</h2>
+<p>All configuration is at the top of
+<code>wazuh_claude_analyzer-V3.py</code>:</p>
+<table>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 28%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>WAZUH_ALERTS_JSON</code></td>
+<td><code>/var/ossec/logs/alerts/alerts.json</code></td>
+<td>Source alert file</td>
+</tr>
+<tr class="even">
+<td><code>ALERT_LEVEL_THRESHOLD</code></td>
+<td><code>8</code></td>
+<td>Analyze alerts with level strictly above this value</td>
+</tr>
+<tr class="odd">
+<td><code>CUSTOM_RULE_MIN</code></td>
+<td><code>100000</code></td>
+<td>Start of 6-digit custom rule range</td>
+</tr>
+<tr class="even">
+<td><code>CUSTOM_RULE_MAX</code></td>
+<td><code>999999</code></td>
+<td>End of 6-digit custom rule range</td>
+</tr>
+<tr class="odd">
+<td><code>CLAUDE_MODEL</code></td>
+<td><code>claude-sonnet-4-20250514</code></td>
+<td>Claude model to use</td>
+</tr>
+<tr class="even">
+<td><code>CLAUDE_MAX_TOKENS</code></td>
+<td><code>1024</code></td>
+<td>Max tokens per analysis response</td>
+</tr>
+<tr class="odd">
+<td><code>LOG_FILE</code></td>
+<td><code>/var/ossec/logs/claude_analysis.log</code></td>
+<td>Script log file</td>
+</tr>
+<tr class="even">
+<td><code>OUTPUT_DIR</code></td>
+<td><code>/var/ossec/logs/claude_reports</code></td>
+<td>Text report directory</td>
+</tr>
+<tr class="odd">
+<td><code>OPENSEARCH_JSON_FILE</code></td>
+<td><code>/var/ossec/logs/claude_reports/claude_analysis.json</code></td>
+<td>JSON feed for Filebeat</td>
+</tr>
+<tr class="even">
+<td><code>POLL_INTERVAL</code></td>
+<td><code>10</code></td>
+<td>Seconds between file polls in watch mode</td>
+</tr>
+<tr class="odd">
+<td><code>DEDUP_WINDOW_SECONDS</code></td>
+<td><code>300</code></td>
+<td>Watch-mode dedup suppression window (seconds)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cli-arguments">CLI arguments</h3>
+<table>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 28%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Argument</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--mode</code></td>
+<td><code>once</code></td>
+<td><code>once</code> = analyze existing alerts; <code>watch</code> =
+tail for new alerts</td>
+</tr>
+<tr class="even">
+<td><code>--alerts-file</code></td>
+<td><code>/var/ossec/logs/alerts/alerts.json</code></td>
+<td>Override the alert file path</td>
+</tr>
+<tr class="odd">
+<td><code>--level</code></td>
+<td><code>8</code></td>
+<td>Override the level threshold at runtime</td>
+</tr>
+<tr class="even">
+<td><code>--dedup-window</code></td>
+<td><code>300</code></td>
+<td>Override the watch-mode dedup window</td>
+</tr>
+<tr class="odd">
+<td><code>--no-opensearch</code></td>
+<td>off</td>
+<td>Skip writing the JSON feed (text reports only)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="how-alert-filtering-works">6. How Alert Filtering Works</h2>
+<p>An alert is selected for analysis if it meets <strong>either</strong>
+of these conditions:</p>
+<h3 id="condition-a-high-severity-level">Condition A — High severity
+level</h3>
+<pre><code>rule.level &gt; ALERT_LEVEL_THRESHOLD  (default: level &gt; 8)</code></pre>
+<p>This captures all standard Wazuh built-in rules that are firing at
+high severity. Wazuh rule levels range from 0 to 15.</p>
+<h3 id="condition-b-6-digit-custom-rule">Condition B — 6-digit custom
+rule</h3>
+<pre><code>100000 &lt;= rule.id &lt;= 999999</code></pre>
+<p>Wazuh reserves the 100000–999999 range for organisation-defined
+custom rules. These are <strong>always captured regardless of their
+assigned level</strong>. This ensures that custom detections — which may
+be assigned a low level during development (e.g., level 3, rule 999900)
+— are never silently skipped.</p>
+<h3 id="example">Example</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Rule ID</th>
+<th>Level</th>
+<th>Selected?</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5710</td>
+<td>10</td>
+<td>✅ Yes</td>
+<td>Level 10 &gt; threshold 8</td>
+</tr>
+<tr class="even">
+<td>19005</td>
+<td>9</td>
+<td>✅ Yes</td>
+<td>Level 9 &gt; threshold 8</td>
+</tr>
+<tr class="odd">
+<td>999900</td>
+<td>3</td>
+<td>✅ Yes</td>
+<td>6-digit custom rule</td>
+</tr>
+<tr class="even">
+<td>1002</td>
+<td>5</td>
+<td>❌ No</td>
+<td>Level 5 ≤ threshold, not custom</td>
+</tr>
+<tr class="odd">
+<td>100001</td>
+<td>2</td>
+<td>✅ Yes</td>
+<td>6-digit custom rule</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="deduplication-logic">7. Deduplication Logic</h2>
+<h3 id="run-once-mode">Run-once mode</h3>
+<p>Before sending any alert to Claude, all matched alerts are
+deduplicated using a fingerprint:</p>
+<pre><code>fingerprint = SHA256(rule_id | agent_id | src_ip | timestamp_minute)[:16]</code></pre>
+<p>Alerts sharing the same fingerprint within the file are suppressed. A
+summary is printed at the end showing how many duplicates were
+removed.</p>
+<h3 id="watch-mode">Watch mode</h3>
+<p>An in-memory dictionary <code>{fingerprint: epoch_timestamp}</code>
+persists across poll cycles. Any alert whose fingerprint was already
+seen within <code>DEDUP_WINDOW_SECONDS</code> (default 300s) is silently
+skipped. Entries older than the window are purged each poll cycle to
+keep memory bounded.</p>
+<p>The dedup window is tunable at runtime:</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> <span class="at">-E</span> python3 wazuh_claude_analyzer-V3.py <span class="at">--mode</span> watch <span class="at">--dedup-window</span> 600</span></code></pre></div>
+<hr />
+<h2 id="running-the-analyzer">8. Running the Analyzer</h2>
+<h3 id="one-time-analysis-of-existing-alerts">One-time analysis of
+existing alerts</h3>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_API_KEY</span><span class="op">=</span><span class="st">&#39;sk-ant-...&#39;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> <span class="at">-E</span> python3 wazuh_claude_analyzer-V3.py <span class="at">--mode</span> once</span></code></pre></div>
+<h3 id="watch-mode-continuous-monitoring">Watch mode (continuous
+monitoring)</h3>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> <span class="at">-E</span> python3 wazuh_claude_analyzer-V3.py <span class="at">--mode</span> watch</span></code></pre></div>
+<p>Watch mode starts at the <strong>end</strong> of the alerts file and
+only processes new alerts as they arrive. Existing alerts are not
+re-processed.</p>
+<h3 id="custom-level-threshold">Custom level threshold</h3>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Capture all alerts above level 5 (plus all custom rules)</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> <span class="at">-E</span> python3 wazuh_claude_analyzer-V3.py <span class="at">--mode</span> once <span class="at">--level</span> 5</span></code></pre></div>
+<h3 id="capture-rule-999900-level-3">Capture rule 999900 (level 3)</h3>
+<p>Rule 999900 is a 6-digit custom rule so it is <strong>always captured
+automatically</strong> without any extra flags:</p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> <span class="at">-E</span> python3 wazuh_claude_analyzer-V3.py <span class="at">--mode</span> once</span></code></pre></div>
+<p>The console output will show <code>[CUSTOM RULE]</code> tag:</p>
+<pre><code>Rule ID    : 999900  🔧 [CUSTOM RULE]
+Level      : 3  (threshold &gt;8)</code></pre>
+<h3 id="text-reports-only-no-opensearch-feed">Text reports only (no
+OpenSearch feed)</h3>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> <span class="at">-E</span> python3 wazuh_claude_analyzer-V3.py <span class="at">--mode</span> once <span class="at">--no-opensearch</span></span></code></pre></div>
+<hr />
+<h2 id="filebeat-integration">9. Filebeat Integration</h2>
+<p>Filebeat ships the <code>claude_analysis.json</code> file directly to
+the Wazuh Indexer (OpenSearch). No Logstash is required.</p>
+<h3 id="setup">Setup</h3>
+<h4 id="create-the-inputs-directory">1. Create the inputs directory</h4>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir <span class="at">-p</span> /etc/filebeat/inputs.d</span></code></pre></div>
+<h4 id="create-the-claude-input-file">2. Create the Claude input
+file</h4>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> tee /etc/filebeat/inputs.d/claude_analysis.yml <span class="op">&lt;&lt; &#39;EOF&#39;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="st">- type: log</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="st">  enabled: true</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="st">  paths:</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="st">    - /var/ossec/logs/claude_reports/claude_analysis.json</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="st">  json.keys_under_root: true</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="st">  json.overwrite_keys: true</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="st">  json.add_error_key: true</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="st">  tags:</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="st">    - claude-analysis</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="st">  fields_under_root: true</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="st">  fields:</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="st">    input_type: claude_analysis</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code></pre></div>
+<h4 id="update-etcfilebeatfilebeat.yml">3. Update
+/etc/filebeat/filebeat.yml</h4>
+<p>Replace the <code>output.elasticsearch</code> block with one that
+routes Claude events to their own index:</p>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">output.elasticsearch</span><span class="kw">:</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">hosts</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">&quot;https://127.0.0.1:9200&quot;</span><span class="kw">]</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">protocol</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;https&quot;</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">username</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;admin&quot;</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">password</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;admin&quot;</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">ssl.verification_mode</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;none&quot;</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">ssl.certificate_authorities</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">&quot;/etc/filebeat/certs/root-ca.pem&quot;</span><span class="kw">]</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">ssl.certificate</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;/etc/filebeat/certs/wazuh-server.pem&quot;</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">ssl.key</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;/etc/filebeat/certs/wazuh-server-key.pem&quot;</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">indices</span><span class="kw">:</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">index</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;wazuh-claude-%{+yyyy.MM.dd}&quot;</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">when.contains</span><span class="kw">:</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">tags</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;claude-analysis&quot;</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">index</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;wazuh-alerts-4.x-%{+yyyy.MM.dd}&quot;</span></span></code></pre></div>
+<p>Also ensure the <code>filebeat.config.inputs</code> block is present
+(add if missing):</p>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filebeat.config.inputs</span><span class="kw">:</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">path</span><span class="kw">:</span><span class="at"> /etc/filebeat/inputs.d/*.yml</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">reload.enabled</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">reload.period</span><span class="kw">:</span><span class="at"> 10s</span></span></code></pre></div>
+<h4 id="fix-file-permissions">4. Fix file permissions</h4>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chmod 644 /var/ossec/logs/claude_reports/claude_analysis.json</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chmod 755 /var/ossec/logs/claude_reports/</span></code></pre></div>
+<h4 id="test-and-restart">5. Test and restart</h4>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> filebeat test config <span class="at">-e</span>    <span class="co"># must return &quot;Config OK&quot;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> filebeat test output        <span class="co"># must return &quot;connection OK&quot;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl restart filebeat</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl status filebeat</span></code></pre></div>
+<h4 id="verify-the-index-was-created">6. Verify the index was
+created</h4>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sleep</span> 15 <span class="kw">&amp;&amp;</span> <span class="ex">curl</span> <span class="at">-sk</span> <span class="at">-u</span> admin:admin <span class="dt">\</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  https://127.0.0.1:9200/_cat/indices/wazuh-claude-<span class="pp">*</span> <span class="kw">|</span> <span class="ex">column</span> <span class="at">-t</span></span></code></pre></div>
+<p>Expected output:</p>
+<pre><code>yellow  open  wazuh-claude-2026.03.23  xxx  1  1  2  0  91.8kb  91.8kb</code></pre>
+<hr />
+<h2 id="wazuh-dashboard-setup">10. Wazuh Dashboard Setup</h2>
+<h3 id="create-the-index-pattern">Create the index pattern</h3>
+<ol type="1">
+<li>Open the Wazuh Dashboard in your browser</li>
+<li>Click <strong>☰</strong> (hamburger menu, top left)</li>
+<li>Navigate to <strong>Stack Management → Index Patterns</strong></li>
+<li>Click <strong>Create index pattern</strong></li>
+<li>Enter <code>wazuh-claude-*</code> → click <strong>Next
+step</strong></li>
+<li>Set <strong>Time field</strong> to <code>@timestamp</code></li>
+<li>Click <strong>Create index pattern</strong></li>
+</ol>
+<h3 id="view-reports-in-discover">View reports in Discover</h3>
+<ol type="1">
+<li>Click <strong>☰ → Discover</strong></li>
+<li>Select index <strong>wazuh-claude-</strong>* from the top-left
+dropdown</li>
+<li>Set time range to <strong>Last 24 hours</strong> (top right)</li>
+</ol>
+<h3 id="useful-search-filters">Useful search filters</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Search query</th>
+<th>What it shows</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>rule.id : 999900</code></td>
+<td>All reports for rule 999900</td>
+</tr>
+<tr class="even">
+<td><code>rule.level : 3</code></td>
+<td>All level-3 alerts</td>
+</tr>
+<tr class="odd">
+<td><code>agent.name : MSS-DC-MISP</code></td>
+<td>All alerts from a specific agent</td>
+</tr>
+<tr class="even">
+<td><code>claude.false_positive_likelihood.label : High</code></td>
+<td>High FP risk alerts</td>
+</tr>
+<tr class="odd">
+<td><code>rule.is_custom : true</code></td>
+<td>All custom rule reports</td>
+</tr>
+</tbody>
+</table>
+<h3 id="recommended-columns-to-add-in-discover">Recommended columns to
+add in Discover</h3>
+<p>Click <strong>Add</strong> next to each field in the left panel:</p>
+<ul>
+<li><code>rule.id</code></li>
+<li><code>rule.level</code></li>
+<li><code>agent.name</code></li>
+<li><code>agent.ip</code></li>
+<li><code>claude.threat_summary</code></li>
+<li><code>claude.false_positive_likelihood.label</code></li>
+<li><code>claude.severity_assessment</code></li>
+</ul>
+<hr />
+<h2 id="report-format">11. Report Format</h2>
+<h3 id="console-output">Console output</h3>
+<pre><code>======================================================================
+🔴  WAZUH ALERT — CLAUDE AI INVESTIGATION  (V3)
+======================================================================
+  Rule ID    : 999900  🔧 [CUSTOM RULE]
+  Level      : 3  (threshold &gt;8)
+  Description: Custom detection — suspicious PowerShell
+  Agent      : WIN-DC-01  (192.168.8.10)
+----------------------------------------------------------------------
+🤖  CLAUDE ANALYSIS
+----------------------------------------------------------------------
+THREAT_SUMMARY: ...
+ATTACK_VECTOR: ...
+...
+----------------------------------------------------------------------
+📄  Text report  → /var/ossec/logs/claude_reports/alert_L3_rule999900_CUSTOM_20260323.txt
+📊  OpenSearch   → /var/ossec/logs/claude_reports/claude_analysis.json
+======================================================================</code></pre>
+<h3 id="opensearch-json-event-schema">OpenSearch JSON event schema</h3>
+<p>Each event written to <code>claude_analysis.json</code> has this
+structure:</p>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;@timestamp&quot;</span><span class="fu">:</span> <span class="st">&quot;2026-03-23T12:10:59.252187+00:00&quot;</span><span class="fu">,</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;rule&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="st">&quot;999900&quot;</span><span class="fu">,</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;level&quot;</span><span class="fu">:</span> <span class="dv">3</span><span class="fu">,</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="st">&quot;Custom detection&quot;</span><span class="fu">,</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;groups&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;custom&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;mitre&quot;</span><span class="fu">:</span> <span class="fu">{},</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;is_custom&quot;</span><span class="fu">:</span> <span class="kw">true</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;agent&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="st">&quot;005&quot;</span><span class="fu">,</span></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;WIN-DC-01&quot;</span><span class="fu">,</span></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;ip&quot;</span><span class="fu">:</span> <span class="st">&quot;192.168.8.10&quot;</span></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;claude&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;threat_summary&quot;</span><span class="fu">:</span> <span class="st">&quot;...&quot;</span><span class="fu">,</span></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;attack_vector&quot;</span><span class="fu">:</span> <span class="st">&quot;...&quot;</span><span class="fu">,</span></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;affected_assets&quot;</span><span class="fu">:</span> <span class="st">&quot;...&quot;</span><span class="fu">,</span></span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;severity_assessment&quot;</span><span class="fu">:</span> <span class="st">&quot;...&quot;</span><span class="fu">,</span></span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;immediate_actions&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;step1&quot;</span><span class="ot">,</span> <span class="st">&quot;step2&quot;</span><span class="ot">,</span> <span class="st">&quot;step3&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;investigation_checklist&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;check1&quot;</span><span class="ot">,</span> <span class="st">&quot;check2&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;false_positive_likelihood&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;label&quot;</span><span class="fu">:</span> <span class="st">&quot;Low&quot;</span><span class="fu">,</span></span>
+<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;score&quot;</span><span class="fu">:</span> <span class="dv">1</span></span>
+<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;raw_analysis&quot;</span><span class="fu">:</span> <span class="st">&quot;...&quot;</span><span class="fu">,</span></span>
+<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;model&quot;</span><span class="fu">:</span> <span class="st">&quot;claude-sonnet-4-20250514&quot;</span></span>
+<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;original_alert&quot;</span><span class="fu">:</span> <span class="fu">{</span> <span class="fu">}</span></span>
+<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="false-positive-score-mapping">False positive score mapping</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Label</th>
+<th>Score</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Low</td>
+<td>1</td>
+<td>Claude is confident this is a real threat</td>
+</tr>
+<tr class="even">
+<td>Medium</td>
+<td>2</td>
+<td>Some indicators suggest a possible FP</td>
+</tr>
+<tr class="odd">
+<td>High</td>
+<td>3</td>
+<td>Likely benign activity, review before acting</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="troubleshooting">12. Troubleshooting</h2>
+<h3 id="api-key-not-found">API key not found</h3>
+<p><strong>Error:</strong></p>
+<pre><code>[ERROR] ANTHROPIC_API_KEY environment variable is not set.</code></pre>
+<p><strong>Fix:</strong></p>
+<div class="sourceCode" id="cb32"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANTHROPIC_API_KEY</span><span class="op">=</span><span class="st">&#39;sk-ant-...&#39;</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> <span class="at">-E</span> python3 wazuh_claude_analyzer-V3.py <span class="at">--mode</span> once</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: -E preserves environment variables under sudo</span></span></code></pre></div>
+<h3 id="no-alerts-found">No alerts found</h3>
+<p><strong>Message:</strong></p>
+<pre><code>No qualifying alerts found (level &gt;8 or 6-digit custom rule).</code></pre>
+<p><strong>Causes and fixes:</strong></p>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check how many alerts exist and their levels</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> cat /var/ossec/logs/alerts/alerts.json <span class="kw">|</span> <span class="ex">python3</span> <span class="at">-c</span> <span class="dt">\</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;import json,sys; alerts=[json.loads(l) for l in sys.stdin if l.strip()]; </span><span class="dt">\</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="st">   print(f&#39;Total: {len(alerts)}&#39;); </span><span class="dt">\</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="st">   [print(a[&#39;rule&#39;][&#39;id&#39;], a[&#39;rule&#39;][&#39;level&#39;]) for a in alerts[:10]]&quot;</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Lower the threshold to capture more alerts</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> <span class="at">-E</span> python3 wazuh_claude_analyzer-V3.py <span class="at">--mode</span> once <span class="at">--level</span> 3</span></code></pre></div>
+<h3 id="filebeat-not-picking-up-claude_analysis.json">Filebeat not
+picking up claude_analysis.json</h3>
+<p><strong>Symptom:</strong> <code>curl</code> shows no
+<code>wazuh-claude-*</code> index after restart.</p>
+<p><strong>Diagnosis:</strong></p>
+<div class="sourceCode" id="cb35"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> journalctl <span class="at">-u</span> filebeat <span class="at">--no-pager</span> <span class="at">-n</span> 30 <span class="kw">|</span> <span class="fu">grep</span> <span class="st">&quot;Configured paths&quot;</span></span></code></pre></div>
+<p>Expected (2 inputs):</p>
+<pre><code>Configured paths: [/var/ossec/logs/alerts/alerts.json]
+Configured paths: [/var/ossec/logs/claude_reports/claude_analysis.json]</code></pre>
+<p>If only 1 input is shown:</p>
+<div class="sourceCode" id="cb37"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Confirm inputs.d file exists</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> cat /etc/filebeat/inputs.d/claude_analysis.yml</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Confirm filebeat.yml has the config.inputs block</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> grep <span class="at">-n</span> <span class="st">&quot;inputs.d&quot;</span> /etc/filebeat/filebeat.yml</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix permissions</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chmod 644 /var/ossec/logs/claude_reports/claude_analysis.json</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Restart</span></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl restart filebeat</span></code></pre></div>
+<h3 id="duplicate-output.elasticsearch-in-filebeat.yml">Duplicate
+output.elasticsearch in filebeat.yml</h3>
+<p>If <code>filebeat.yml</code> has two
+<code>output.elasticsearch</code> blocks (from earlier edits), Filebeat
+will fail silently. Keep only one.</p>
+<div class="sourceCode" id="cb38"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> grep <span class="at">-n</span> <span class="st">&quot;output.elasticsearch&quot;</span> /etc/filebeat/filebeat.yml</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Should return exactly 1 line</span></span></code></pre></div>
+<h3 id="index-exists-but-no-data-in-dashboard">Index exists but no data
+in Dashboard</h3>
+<div class="sourceCode" id="cb39"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check document count directly</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-sk</span> <span class="at">-u</span> admin:admin <span class="dt">\</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;https://127.0.0.1:9200/wazuh-claude-*/_count&quot;</span> <span class="kw">|</span> <span class="ex">python3</span> <span class="at">-m</span> json.tool</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Check time range in Dashboard — set to &quot;Last 7 days&quot;</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="co"># The @timestamp field must be selected as the time field in the index pattern</span></span></code></pre></div>
+<h3 id="rate-limit-error">Rate limit error</h3>
+<pre><code>[ERROR] Claude API rate limit reached. Retry later.</code></pre>
+<p>The script will continue processing the next alert. Rate-limited
+alerts are saved to the text report with the error message. Re-run in
+<code>--mode once</code> after a few minutes to retry.</p>
+<hr />
+<h2 id="file-reference">13. File Reference</h2>
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 28%" />
+<col style="width: 42%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>File</th>
+<th>Path</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Main script</td>
+<td><code>/usr/local/bin/wazuh_claude_analyzer-V3.py</code></td>
+<td>The analyzer</td>
+</tr>
+<tr class="even">
+<td>Text reports</td>
+<td><code>/var/ossec/logs/claude_reports/alert_L*.txt</code></td>
+<td>Human-readable per-alert reports</td>
+</tr>
+<tr class="odd">
+<td>OpenSearch feed</td>
+<td><code>/var/ossec/logs/claude_reports/claude_analysis.json</code></td>
+<td>Newline-delimited JSON for Filebeat</td>
+</tr>
+<tr class="even">
+<td>Script log</td>
+<td><code>/var/ossec/logs/claude_analysis.log</code></td>
+<td>Runtime log</td>
+</tr>
+<tr class="odd">
+<td>Filebeat input</td>
+<td><code>/etc/filebeat/inputs.d/claude_analysis.yml</code></td>
+<td>Tells Filebeat to watch the JSON feed</td>
+</tr>
+<tr class="even">
+<td>Filebeat config</td>
+<td><code>/etc/filebeat/filebeat.yml</code></td>
+<td>Main Filebeat config with index routing</td>
+</tr>
+<tr class="odd">
+<td>Systemd service</td>
+<td><code>/etc/systemd/system/wazuh-claude.service</code></td>
+<td>Optional daemon for watch mode</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="changelog">14. Changelog</h2>
+<h3 id="v3-march-2026">V3 (March 2026)</h3>
+<ul>
+<li>Added OpenSearch JSON feed (<code>claude_analysis.json</code>) for
+dashboard integration</li>
+<li>Added structured Claude response parsing (THREAT_SUMMARY,
+ATTACK_VECTOR, etc.)</li>
+<li>Added <code>false_positive_likelihood.score</code> numeric field for
+charting</li>
+<li>Added <code>rule.is_custom</code> boolean field</li>
+<li>Added <code>--no-opensearch</code> flag</li>
+<li>Reports tagged with <code>[CUSTOM RULE]</code> in console and
+filenames</li>
+</ul>
+<h3 id="v2-march-2026">V2 (March 2026)</h3>
+<ul>
+<li>Added 6-digit custom rule detection (100000–999999)</li>
+<li>Added deduplication in both run-once and watch modes</li>
+<li>Added <code>--dedup-window</code> CLI argument</li>
+<li>Alert fingerprinting via SHA-256 (rule_id + agent_id + src_ip +
+minute)</li>
+</ul>
+<h3 id="v1-march-2026">V1 (March 2026)</h3>
+<ul>
+<li>Initial release</li>
+<li>Level threshold filtering</li>
+<li>Claude AI analysis with 7-section report format</li>
+<li>Watch mode (tail) and run-once mode</li>
+<li>Text report saving</li>
+</ul>
+</body>
+</html>
